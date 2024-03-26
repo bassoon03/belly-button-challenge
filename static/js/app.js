@@ -1,11 +1,15 @@
 const url = "https://static.bc-edx.com/data/dl-1-2/m14/lms/starter/samples.json";
 
-const sampleJson = d3.json(url);
-console.log("samples.json", sampleJson);
+//const sampleJson = d3.json(url);
+//console.log("C:\Users\Owner\belly-button-challenge\samples.json", sampleJson);
 
-sampleJson.then(function(data) {
-    console.log(data);
+
+d3.json(url, function(data) {
+    console.log(data)
 });
+//sampleJson.then(function(data) {
+//    console.log(data);
+//});
 
 
 
