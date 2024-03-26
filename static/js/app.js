@@ -4,9 +4,9 @@ const url = "https://static.bc-edx.com/data/dl-1-2/m14/lms/starter/samples.json"
 //console.log("C:\Users\Owner\belly-button-challenge\samples.json", sampleJson);
 
 
-d3.json(url, function(data) {
-    console.log(data)
-});
+function init(){
+    d3.json(url).then(function(data)};
+init()
 //sampleJson.then(function(data) {
 //    console.log(data);
 //});
