@@ -3,9 +3,14 @@ const url = "https://static.bc-edx.com/data/dl-1-2/m14/lms/starter/samples.json"
 const sampleJson = d3.json(url);
 console.log("sample.json: ", sampleJson);
 
-d3.json(url).then(function(data) {
+sampleJson.then(function(data) {
     console.log(data);
 });
+
+
+
+
+
 
 
 // For loop and lists will be created here.
