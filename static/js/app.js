@@ -8,47 +8,59 @@ d3.json(url).then(function(data){
     values = data.samples;
     meta_data = data.metadata;
     Names = data.names;
-    value10 = values.sample_values.slice(0,10);
-    ids10 = values.otu_ids.slice(0,10);
-    labels10 = values.otu_labels.slice(0,10);
 });
 
 // When new dropdown menu option selected, optionChanged called
-d3.selectAll("#selDataset").on("onchange", optionChanged);
-
 
 
 function init() {
-    const trace = {
-        x : value10,
-        y : ids10,
-        text : lables10,
+    trace = {
+        x : values[0].sample_values.slice(0,10),
+        y : values[0].sample_values.slice(0,10),
+        text : values[0].otu_labels.slice(0,10),
         type : 'bar',
         orientation : 'h'
     };
 
-    const bubble_trace = {
-        x : values[i],
-        y : otuIds,
+    bubble_trace = {
+        x : values[0].otu_ids,
+        y : values[0].sample_values,
         mode : 'markers',
         markers : {
-            size : 
-        };
-    }};
+            size : values[0].sample_values,
+        }
+    };
 
-
-
+    //Demographic chart still needed
+};
 
 init();
 
+
+// When new dropdown menu option selected, optionChanged called
 d3.selectAll("#selDataset").on("onchange", optionChanged);    
 
 function optionChanged() {
     let dropdownMenu = d3.selectAll("#selDataset");
-    let dataset = dropdownMenu.property(Names);
+    let dataset = dropdownMenu.property("value");
         
-    //let x = [];
-    //let y = [];
+    i = Names.indexOf(dataset);
+    trace = {
+        x : values[i].sample_values.slice(0,10),
+        y : values[i].sample_values.slice(0,10),
+        text : values[i].otu_labels.slice(0,10),
+        type : 'bar',
+        orientation : 'h'
+    };
+
+    bubble_trace = {
+        x : values[i].otu_ids,
+        y : values[i].sample_values,
+        mode : 'markers',
+        markers : {
+            size : values[i].sample_values,
+        }
+    }
     
     Plotly.restyle("plot","x",[x])
     Plotly.restyle("plot","y",[y])};
