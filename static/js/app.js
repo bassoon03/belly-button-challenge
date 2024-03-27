@@ -1,17 +1,12 @@
 // Url for json file
 const url = "https://static.bc-edx.com/data/dl-1-2/m14/lms/starter/samples.json";
 
-
-
 // Read in file from url
 d3.json(url).then(function(data){
     values = data.samples;
     meta_data = data.metadata;
     Names = data.names;
 });
-
-// When new dropdown menu option selected, optionChanged called
-
 
 function init() {
     trace = {
