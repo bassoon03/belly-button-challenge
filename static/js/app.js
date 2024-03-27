@@ -8,8 +8,13 @@ d3.json(url).then(function(data){
     Names = data.names;
 });
 
+// Get dropdown menu populating function from Geeks for Geeks
+// https://www.geeksforgeeks.org/how-to-create-a-dropdown-list-with-array-values-using-javascript/
+
+
+
 function init() {
-    trace = {
+    let trace = {
         x : values[0].sample_values.slice(0,10),
         y : values[0].sample_values.slice(0,10),
         text : values[0].otu_labels.slice(0,10),
@@ -17,16 +22,29 @@ function init() {
         orientation : 'h'
     };
 
-    bubble_trace = {
+    let bubble_trace = {
         x : values[0].otu_ids,
         y : values[0].sample_values,
         mode : 'markers',
         markers : {
             size : values[0].sample_values,
-        }
+            color : 
+        },
+        text : values[0].otu_labels
     };
 
     //Demographic chart still needed
+    let demo_trace = {
+
+    };
+
+
+    Plotly.newPlot("bar", [trace]);
+    Plotly.newPlot("bubble", [bubble_trace])};
+    Plotly.newPlot("sample-metadata", [demo_trace])
+
+
+
 };
 
 init();
@@ -39,8 +57,8 @@ function optionChanged() {
     let dropdownMenu = d3.selectAll("#selDataset");
     let dataset = dropdownMenu.property("value");
         
-    i = Names.indexOf(dataset);
-    trace = {
+    let i = Names.indexOf(dataset);
+    let trace = {
         x : values[i].sample_values.slice(0,10),
         y : values[i].sample_values.slice(0,10),
         text : values[i].otu_labels.slice(0,10),
@@ -48,14 +66,21 @@ function optionChanged() {
         orientation : 'h'
     };
 
-    bubble_trace = {
+    let demo_trace = {
+
+    };
+
+    let bubble_trace = {
         x : values[i].otu_ids,
         y : values[i].sample_values,
         mode : 'markers',
         markers : {
             size : values[i].sample_values,
         }
-    }
+    };
+
+
     
-    Plotly.restyle("plot","x",[x])
-    Plotly.restyle("plot","y",[y])};
+    Plotly.restyle("bar", [trace]);
+    Plotly.restyle("bubble", [bubble_trace])};
+    Plotly.restyle("sample-metadata", [demo_trace])
