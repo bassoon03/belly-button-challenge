@@ -8,30 +8,45 @@ d3.json(url).then(function(data){
     Names = data.names;
 });
 
-// Get dropdown menu populating function from Geeks for Geeks
-// https://www.geeksforgeeks.org/how-to-create-a-dropdown-list-with-array-values-using-javascript/
+
+const dropdownMenu = d3.select("#selDataset");
+    dropdownMenu.selectAll("option")
+        .data(Names)
+        .enter()
+        .append("option")
+        .text(d => d);
 
 
 
-function init() {
+function traces() {
     let trace = {
-        x : values[0].sample_values.slice(0,10),
-        y : values[0].otu_ids.slice(0,10),
-        text : values[0].otu_labels.slice(0,10),
+        x : values[i].sample_values.slice(0,10),
+        y : values[i].otu_ids.slice(0,10),
+        text : values[i].otu_labels.slice(0,10),
         type : 'bar',
         orientation : 'h'
     };
 
     let bubble_trace = {
-        x : values[0].otu_ids,
-        y : values[0].sample_values,
+        x : values[i].otu_ids,
+        y : values[i].sample_values,
         mode : 'markers',
         markers : {
-            size : values[0].sample_values,
-            color : values[0].otu_ids,
+            size : values[i].sample_values,
+            color : values[i].otu_ids,
         },
-        text : values[0].otu_labels
+        text : values[i].otu_labels
     };
+}
+
+function meta_portrait() {
+    
+}
+
+
+function init() {
+    let i = 1;
+
 
     //Demographic chart still needed
     let demo_trace = {
@@ -54,30 +69,10 @@ init();
 d3.selectAll("#selDataset").on("onchange", optionChanged);    
 
 function optionChanged() {
-    let dropdownMenu = d3.selectAll("#selDataset");
     let dataset = dropdownMenu.property("value");
         
     let i = Names.indexOf(dataset);
-    let trace = {
-        x : values[i].sample_values.slice(0,10),
-        y : values[i].sample_values.slice(0,10),
-        text : values[i].otu_labels.slice(0,10),
-        type : 'bar',
-        orientation : 'h'
-    };
-
-    let demo_trace = {
-
-    };
-
-    let bubble_trace = {
-        x : values[i].otu_ids,
-        y : values[i].sample_values,
-        mode : 'markers',
-        markers : {
-            size : values[i].sample_values,
-        }
-    };
+    traces(i);
 
 
     
