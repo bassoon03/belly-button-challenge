@@ -16,7 +16,7 @@ d3.json(url).then(function(data){
 function init() {
     let trace = {
         x : values[0].sample_values.slice(0,10),
-        y : values[0].sample_values.slice(0,10),
+        y : values[0].otu_ids.slice(0,10),
         text : values[0].otu_labels.slice(0,10),
         type : 'bar',
         orientation : 'h'
@@ -28,7 +28,7 @@ function init() {
         mode : 'markers',
         markers : {
             size : values[0].sample_values,
-            color : 
+            color : values[0].otu_ids,
         },
         text : values[0].otu_labels
     };
@@ -40,12 +40,12 @@ function init() {
 
 
     Plotly.newPlot("bar", [trace]);
-    Plotly.newPlot("bubble", [bubble_trace])};
-    Plotly.newPlot("sample-metadata", [demo_trace])
+    Plotly.newPlot("bubble", [bubble_trace]);
+    Plotly.newPlot("sample-metadata", [demo_trace])};
 
 
 
-};
+
 
 init();
 
@@ -82,5 +82,5 @@ function optionChanged() {
 
     
     Plotly.restyle("bar", [trace]);
-    Plotly.restyle("bubble", [bubble_trace])};
-    Plotly.restyle("sample-metadata", [demo_trace])
+    Plotly.restyle("bubble", [bubble_trace])
+    Plotly.restyle("sample-metadata", [demo_trace])};
