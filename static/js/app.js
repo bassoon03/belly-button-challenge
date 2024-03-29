@@ -44,30 +44,29 @@ function traces() {
 };
 
 function meta_portrait() {
-
-
-
-
-
-    //Plotly.newPlot("sample-metadata", [demo_trace])}; 
-}
-
+    // Figure out filter
+    // result = meta_data
+    d3.select("sample-metadata");
+    for (i = 0; i < result.length; i++) {
+        demographics = {
+            "id" : result["id"],
+            "ethnicity" : result["ethnicity"],
+            "gender" : result["gender"],
+            "age" : result["age"],
+            "location" : result["location"],
+            "bbtype" : result["bbtype"],
+            "wfreq" : result["wfreq"]
+        };
+        demographics.appendTo("#sample-metadata");
+    };
+};
 
 function init() {
+
     let i = 1;
-
-
-    //Demographic chart still needed
-    let demo_trace = {
-
+    traces();
+    meta_portrait();
     };
-
-
-    
-    
-
-
-
 
 
 init();
@@ -77,13 +76,14 @@ init();
 d3.selectAll("#selDataset").on("onchange", optionChanged);    
 
 function optionChanged() {
-    let dataset = dropdownMenu.property("value");
-        
+    let dataset = dropdownMenu.property("value");    
     let i = Names.indexOf(dataset);
-    traces(i);
+    traces();
+    meta_portrait();
 
 
     
     Plotly.restyle("bar", [trace]);
     Plotly.restyle("bubble", [bubble_trace])
-    Plotly.restyle("sample-metadata", [demo_trace])};
+    Plotly.restyle("sample-metadata", [demo_trace])
+};
