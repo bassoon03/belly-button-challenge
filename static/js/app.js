@@ -37,10 +37,19 @@ function traces() {
         },
         text : values[i].otu_labels
     };
-}
+
+    Plotly.newPlot("bar", [trace]);
+    Plotly.newPlot("bubble", [bubble_trace]);
+
+};
 
 function meta_portrait() {
-    
+
+
+
+
+
+    //Plotly.newPlot("sample-metadata", [demo_trace])}; 
 }
 
 
@@ -54,9 +63,8 @@ function init() {
     };
 
 
-    Plotly.newPlot("bar", [trace]);
-    Plotly.newPlot("bubble", [bubble_trace]);
-    Plotly.newPlot("sample-metadata", [demo_trace])};
+    
+    
 
 
 
