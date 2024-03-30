@@ -17,7 +17,7 @@ const dropdownMenu = d3.select("#selDataset");
 
 
 
-function traces() {
+function traces(i) {
     let trace = {
         x : values[i].sample_values.slice(0,10),
         y : values[i].otu_ids.slice(0,10),
@@ -42,7 +42,7 @@ function traces() {
 
 };
 
-function meta_portrait() {
+function meta_portrait(i) {
     // Figure out filter
     result = meta_data.indexOf(dataset);
     d3.select("sample-metadata");
