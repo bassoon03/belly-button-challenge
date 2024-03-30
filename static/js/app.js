@@ -18,25 +18,28 @@ const dropdownMenu = d3.select("#selDataset");
 
 let dataset = dropdownMenu.property("value");
 let i = Names.indexOf(dataset);
+let metaSet = meta_data[i];
 
-function traces() {
+
+
+function traces(k) {
     let trace = {
-        x : values[i].sample_values.slice(0,10),
-        y : values[i].otu_ids.slice(0,10),
-        text : values[i].otu_labels.slice(0,10),
+        x : values[k].sample_values.slice(0,10),
+        y : values[k].otu_ids.slice(0,10),
+        text : values[k].otu_labels.slice(0,10),
         type : 'bar',
         orientation : 'h'
     };
 
     let bubble_trace = {
-        x : values[i].otu_ids,
-        y : values[i].sample_values,
+        x : values[k].otu_ids,
+        y : values[k].sample_values,
         mode : 'markers',
         markers : {
-            size : values[i].sample_values,
-            color : values[i].otu_ids,
+            size : values[k].sample_values,
+            color : values[k].otu_ids,
         },
-        text : values[i].otu_labels
+        text : values[k].otu_labels
     };
 
     Plotly.newPlot("bar", [trace]);
@@ -44,26 +47,26 @@ function traces() {
 
 };
 
-function meta_portrait() {
+function meta_portrait(result) {
     // Figure out filter
     d3.select("sample-metadata");
-    for (i = 0; i < result.length; i++) {
+    for (j = 0; j < meta_data.length; j++) {
         demographics = {
-            "id" : i["id"],
-            "ethnicity" : i["ethnicity"],
-            "gender" : i["gender"],
-            "age" : i["age"],
-            "location" : i["location"],
-            "bbtype" : i["bbtype"],
-            "wfreq" : i["wfreq"]
+            "id" : result["id"],
+            "ethnicity" : result["ethnicity"],
+            "gender" : result["gender"],
+            "age" : result["age"],
+            "location" : result["location"],
+            "bbtype" : result["bbtype"],
+            "wfreq" : result["wfreq"]
         };
         demographics.appendTo("#sample-metadata");
     };
 };
 
 function init() {
-    traces();
-    meta_portrait();
+    traces(0);
+    meta_portrait(meta_data[0]);
     };
 
 
@@ -75,8 +78,8 @@ d3.selectAll("#selDataset").on("onchange", optionChanged);
 
 function optionChanged() {
        
-    traces();
-    meta_portrait();
+    traces(i);
+    meta_portrait(metaSet);
 
 
     
