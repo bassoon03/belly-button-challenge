@@ -15,7 +15,7 @@ const dropdownMenu = d3.select("#selDataset");
         .append("option")
         .text(d => d);
 
-
+});
 
 function traces(i) {
     let trace = {
@@ -86,6 +86,6 @@ function optionChanged() {
     Plotly.restyle("bubble", [bubble_trace])
     Plotly.restyle("sample-metadata", [demo_trace])
 };
-});
+
 
 
