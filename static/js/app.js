@@ -15,9 +15,11 @@ const dropdownMenu = d3.select("#selDataset");
         .append("option")
         .text(d => d);
 
-});
 
-function traces(i) {
+let dataset = dropdownMenu.property("value");
+let i = Names.indexOf(dataset);
+
+function traces() {
     let trace = {
         x : values[i].sample_values.slice(0,10),
         y : values[i].otu_ids.slice(0,10),
@@ -42,29 +44,26 @@ function traces(i) {
 
 };
 
-function meta_portrait(i) {
+function meta_portrait() {
     // Figure out filter
-    result = meta_data.indexOf(dataset);
     d3.select("sample-metadata");
     for (i = 0; i < result.length; i++) {
         demographics = {
-            "id" : result["id"],
-            "ethnicity" : result["ethnicity"],
-            "gender" : result["gender"],
-            "age" : result["age"],
-            "location" : result["location"],
-            "bbtype" : result["bbtype"],
-            "wfreq" : result["wfreq"]
+            "id" : i["id"],
+            "ethnicity" : i["ethnicity"],
+            "gender" : i["gender"],
+            "age" : i["age"],
+            "location" : i["location"],
+            "bbtype" : i["bbtype"],
+            "wfreq" : i["wfreq"]
         };
         demographics.appendTo("#sample-metadata");
     };
 };
 
 function init() {
-
-    let i = 1;
-    traces(i);
-    meta_portrait(i);
+    traces();
+    meta_portrait();
     };
 
 
@@ -75,10 +74,9 @@ init();
 d3.selectAll("#selDataset").on("onchange", optionChanged);    
 
 function optionChanged() {
-    let dataset = dropdownMenu.property("value");    
-    let i = Names.indexOf(dataset);
-    traces(i);
-    meta_portrait(i);
+       
+    traces();
+    meta_portrait();
 
 
     
@@ -87,5 +85,5 @@ function optionChanged() {
     Plotly.restyle("sample-metadata", [demo_trace])
 };
 
-
+});
 
