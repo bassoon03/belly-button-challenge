@@ -6,7 +6,7 @@ d3.json(url).then(function(data){
     values = data.samples;
     meta_data = data.metadata;
     Names = data.names;
-});
+
 
 
 const dropdownMenu = d3.select("#selDataset");
@@ -45,7 +45,7 @@ function traces() {
 
 function meta_portrait() {
     // Figure out filter
-    // result = meta_data
+    result = meta_data.indexOf(dataset);
     d3.select("sample-metadata");
     for (i = 0; i < result.length; i++) {
         demographics = {
@@ -87,3 +87,6 @@ function optionChanged() {
     Plotly.restyle("bubble", [bubble_trace])
     Plotly.restyle("sample-metadata", [demo_trace])
 };
+});
+
+
