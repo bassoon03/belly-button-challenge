@@ -8,7 +8,6 @@ d3.json(url).then(function(data){
     Names = data.names;
 
 
-
 const dropdownMenu = d3.select("#selDataset");
     dropdownMenu.selectAll("option")
         .data(Names)
@@ -64,8 +63,8 @@ function meta_portrait() {
 function init() {
 
     let i = 1;
-    traces();
-    meta_portrait();
+    traces(i);
+    meta_portrait(i);
     };
 
 
@@ -78,8 +77,8 @@ d3.selectAll("#selDataset").on("onchange", optionChanged);
 function optionChanged() {
     let dataset = dropdownMenu.property("value");    
     let i = Names.indexOf(dataset);
-    traces();
-    meta_portrait();
+    traces(i);
+    meta_portrait(i);
 
 
     
