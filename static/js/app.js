@@ -83,9 +83,9 @@ function optionChanged() {
 
 
     
-    Plotly.restyle("bar", [trace]);
-    Plotly.restyle("bubble", [bubble_trace])
-    Plotly.restyle("sample-metadata", [demo_trace])
+    Plotly.react("bar", [trace]);
+    Plotly.react("bubble", [bubble_trace])
+    Plotly.react("sample-metadata", [demo_trace])
 };
 
 });
