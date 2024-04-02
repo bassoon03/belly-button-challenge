@@ -49,7 +49,7 @@ function traces(k) {
 
 function meta_portrait(result) {
     // Figure out filter
-    d3.select("sample-metadata");
+    d3.select("#sample-metadata");
     for (j = 0; j < meta_data.length; j++) {
         demographics = {
             "id" : result["id"],
@@ -77,7 +77,12 @@ init();
 d3.selectAll("#selDataset").on("onchange", optionChanged);    
 
 function optionChanged() {
-       
+
+    let dataset = dropdownMenu.property("value");
+    let i = Names.indexOf(dataset);
+    let metaSet = meta_data[i]; 
+    
+    
     traces(i);
     meta_portrait(metaSet);
 
