@@ -16,11 +16,6 @@ const dropdownMenu = d3.select("#selDataset");
         .text(d => d);
 
 
-let dataset = dropdownMenu.property("value");
-let i = Names.indexOf(dataset);
-let metaSet = meta_data[i];
-
-
 
 function traces(k) {
     let trace = {
