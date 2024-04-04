@@ -20,19 +20,19 @@ const dropdownMenu = d3.select("#selDataset");
 function traces(k) {
     let trace = {
         x : values[k].sample_values.slice(0,10),
-        y : values[k].otu_ids.slice(0,10),
+        y : values[k].toString(otu_ids).slice(0,10),
         text : values[k].otu_labels.slice(0,10),
         type : 'bar',
         orientation : 'h'
     };
 
     let bubble_trace = {
-        x : values[k].otu_ids,
+        x : values[k].toString(otu_ids),
         y : values[k].sample_values,
         mode : 'markers',
         markers : {
             size : values[k].sample_values,
-            color : values[k].otu_ids,
+            color : values[k].toString(otu_ids),
         },
         text : values[k].otu_labels
     };
