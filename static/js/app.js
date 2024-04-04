@@ -20,7 +20,7 @@ const dropdownMenu = d3.select("#selDataset");
 function traces(k) {
     let trace = {
         x : values[k].sample_values.slice(0,10),
-        y : values[k].toString(otu_ids).slice(0,10),
+        y : toString(values[k].otu_ids.slice(0,10)),
         text : values[k].otu_labels.slice(0,10),
         type : 'bar',
         orientation : 'h'
@@ -32,7 +32,7 @@ function traces(k) {
         mode : 'markers',
         markers : {
             size : values[k].sample_values,
-            color : values[k].toString(otu_ids),
+            color : toString(values[k].otu_ids),
         },
         text : values[k].otu_labels
     };
