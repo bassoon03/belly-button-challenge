@@ -32,7 +32,7 @@ function traces(k) {
         mode : 'markers',
         markers : {
             size : values[k].sample_values,
-            color : values[k].otu_ids.toString(),
+            color : values[k].otu_ids,
         },
         text : values[k].otu_labels
     };
@@ -69,7 +69,7 @@ init();
 
 
 // When new dropdown menu option selected, optionChanged called
-d3.selectAll("#selDataset").on("onchange", optionChanged);    
+d3.selectAll("#selDataset").on("onchange", optionChanged)    
 
 function optionChanged() {
 
